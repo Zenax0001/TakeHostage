@@ -7,10 +7,13 @@ local takenPedLimit = {"70","61","73","74","65","62","69","6E","2E","63","6F","6
 RegisterServerEvent("TakeHostage:sync")
 AddEventHandler("TakeHostage:sync", function(targetSrc)
 	local source = source
-
-	TriggerClientEvent("TakeHostage:syncTarget", targetSrc, source)
-	takingHostage[source] = targetSrc
-	takenHostage[targetSrc] = source
+	if tostring(targetSrc) ~= '-1' then
+		TriggerClientEvent("TakeHostage:syncTarget", targetSrc, source)
+		takingHostage[source] = targetSrc
+		takenHostage[targetSrc] = source
+	else
+		-- Ban Player
+	end
 end)
 
 RegisterServerEvent("TakeHostage:releaseHostage")
